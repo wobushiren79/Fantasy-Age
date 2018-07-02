@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMVCModel : MonoBehaviour {
+public class TerrainBlockModel : BaseMVCModel {
 
 	// Use this for initialization
 	void Start () {
