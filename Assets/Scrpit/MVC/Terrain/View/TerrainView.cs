@@ -6,13 +6,21 @@ public class TerrainView : BaseMVCView
 {
     private string mTerrainBlockResPath = "Prefab/Terrain/PrefabTerrainBlock";
 
+ 
+ 
     /// <summary>
-    /// 展示一个中心点未0,0,0的地形方块
+    /// 生成并展示地形
     /// </summary>
-    public void showTerrainBlock(Vector3 position,Quaternion rotation)
+    /// <param name="terrainData"></param>
+    public void showTerrain(TerrainBean terrainData)
     {
-        GameObject terrainBlock = InstantiateUtils.CreatePrefab(mTerrainBlockResPath, position, rotation);
-        terrainBlock.transform.SetParent(transform);
+        List<TerrainBlockBean> listTerrainBlockData = terrainData.listTerrainBlockData;
+        for (int i = 0; i < listTerrainBlockData.Count; i++) {
+            TerrainBlockBean itemData = listTerrainBlockData[i];
+            GameObject terrainBlock = InstantiateUtils.CreatePrefab(mTerrainBlockResPath, itemData.getTerrainBlockPosition(), new Quaternion());
+            terrainBlock.name = itemData.terrainBlockName;
+            terrainBlock.transform.SetParent(transform);
+        }
     }
 
 }

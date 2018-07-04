@@ -5,11 +5,12 @@ using UnityEngine;
 public class TerrainController : BaseMVCController<TerrainView,TerrainModel> {
 
     /// <summary>
-    /// 创建地形方块
+    /// 创建地形方块（基础）
     /// </summary>
     public void createTerrainBlock()
     {
-        mBaseView.showTerrainBlock(new Vector3(0,0,0),new Quaternion());
+        TerrainBean terrainData=   mBaseModel.getCreateRandomTerrainData(100,100,new Vector3(0,0,0));
+        mBaseView.showTerrain(terrainData);
     }
 
 }
