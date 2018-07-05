@@ -9,7 +9,7 @@ public class TerrainController : BaseMVCController<TerrainView,TerrainModel> {
     /// </summary>
     public void createTerrainBlock()
     {
-        TerrainBean terrainData=   mBaseModel.getCreateRandomTerrainData(100,100,new Vector3(0,0,0));
+        TerrainBean terrainData=   mBaseModel.getCreateRandomTerrainData(50,50,new Vector3(0,0,0));
         mBaseView.showTerrain(terrainData);
     }
 

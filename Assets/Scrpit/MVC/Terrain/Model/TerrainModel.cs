@@ -8,6 +8,7 @@ public class TerrainModel : BaseMVCModel
     private TerrainBean mTerrainBean;
     private int mUnitTerrain = 1;
 
+    private float _seedX, _seedZ;
     /// <summary>
     /// 获取创建随机地形数据
     /// </summary>
@@ -22,6 +23,9 @@ public class TerrainModel : BaseMVCModel
         float terrainHalfWide = terrainWide / 2f;
         float terrainHalfHigh = terrainLong / 2f;
         float halfUnitTerrain = mUnitTerrain / 2f;
+
+        _seedX = Random.value * 100f;
+        _seedZ = Random.value * 100f;
         for (int i = 0; i < terrainWide; i++)
         {
             for (int f = 0; f < terrainLong; f++)
@@ -29,14 +33,21 @@ public class TerrainModel : BaseMVCModel
                 TerrainBlockBean terrainBlockBean = new TerrainBlockBean();
 
                 float terrainBlockX = i - terrainHalfWide + createPosition.x+ halfUnitTerrain;
-                float terrainBlockY = RandomUtils.getFloatRandom(0,1) + createPosition.y + halfUnitTerrain;
                 float terrainBlockZ = f - terrainHalfHigh + createPosition.z + halfUnitTerrain;
+                float terrainBlockY = 0;
+
+
+                float xSample = (terrainBlockX + _seedX) /15;
+                float zSample = (terrainBlockZ + _seedZ) / 15;
+                float perlinNoise = Mathf.PerlinNoise(xSample, zSample);
+                float terrainBlockHigh = perlinNoise * 10 + createPosition.y;
                 string terrainBlockName = "X_" + terrainBlockX + " Y_" + terrainBlockY + " Z_" + terrainBlockZ;
 
                 terrainBlockBean.terrainBlockName = terrainBlockName;
                 terrainBlockBean.terrainBlockX = terrainBlockX;
                 terrainBlockBean.terrainBlockY = terrainBlockY;
                 terrainBlockBean.terrainBlockZ = terrainBlockZ;
+                terrainBlockBean.terrainBlockHigh = terrainBlockHigh;
 
                 listTerrainBlockData.Add(terrainBlockBean);
             }

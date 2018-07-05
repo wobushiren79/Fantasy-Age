@@ -18,6 +18,8 @@ public class TerrainView : BaseMVCView
         for (int i = 0; i < listTerrainBlockData.Count; i++) {
             TerrainBlockBean itemData = listTerrainBlockData[i];
             GameObject terrainBlock = InstantiateUtils.CreatePrefab(mTerrainBlockResPath, itemData.getTerrainBlockPosition(), new Quaternion());
+            terrainBlock.transform.localScale =new Vector3 (1, itemData.terrainBlockHigh, 1);
+            terrainBlock.transform.position = new Vector3(itemData.terrainBlockX, itemData.terrainBlockHigh/2f, itemData.terrainBlockZ);
             terrainBlock.name = itemData.terrainBlockName;
             terrainBlock.transform.SetParent(transform);
         }

@@ -12,6 +12,9 @@ public class TerrainBlockBean : BaseBean {
     public float terrainBlockY;
     public float terrainBlockZ;
 
+    //方块高
+    public float terrainBlockHigh;
+
 
     /// <summary>
     /// 获取地形方块的坐标位置
